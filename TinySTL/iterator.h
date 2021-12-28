@@ -1,12 +1,15 @@
 #ifndef TINYSTL_ITERATOR_H_
 #define TINYSTL_ITERATOR_H_
 
+#include <stddef.h>
+
 namespace tinystl
 {
 
-/* 迭代器设计
+/**
+ * 迭代器设计
  * 五种迭代器类型
-*/
+ */
 
 // 用类判断类型，可以通过重载在编译阶段确定使用哪一种方案
 struct input_iterator_tag {};
@@ -16,8 +19,9 @@ struct bidirectional_iterator_tag : public forward_iterator_tag {};
 struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
 
-/* iterator模板，此后迭代器设计都应从此处继承
-*/
+/**
+ * iterator模板，此后迭代器设计都应从此处继承
+ */
 
 template <class Category, class T,
           class Distance = ptrdiff_t,
@@ -33,9 +37,10 @@ template <class Category, class T,
   };
 
 
-/* iterator traits
+/**
+ * iterator traits
  * 特性萃取技术
-*/
+ */
 
 // 萃取迭代器特性
 template <class Iterator>
@@ -92,8 +97,9 @@ template <class Iterator>
   }
 
 
-/* distance 函数
-*/
+/**
+ * distance 函数
+ */
 template <class InputIterator>
   inline typename iterator_traits<InputIterator>::difference_type
   __distance(InputIterator first, InputIterator last,
@@ -120,8 +126,9 @@ template <class InputIterator> //STL命名规范：以算法所能接受的最�
   }
 
 
-/* advance 函数
-*/
+/**
+ * advance 函数
+ */
 template <class InputIterator, class Distance>
   inline void __advance(InputIterator& i, Distance n,
                         input_iterator_tag)
