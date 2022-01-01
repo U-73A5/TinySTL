@@ -1,5 +1,5 @@
 /**
- * 定义全局函数 construct() 和 destory()
+ * 定义全局函数 construct() 和 destroy()
  * 负责对象内容的构造与析构
  */
 
@@ -32,37 +32,37 @@ template <class T>
 // 删除区间元素
 // 获取删除元素类型
 template <class ForwardIterator>
-  inline void destory(ForwardIterator first, ForwardIterator last)
+  inline void destroy(ForwardIterator first, ForwardIterator last)
   {
-    __destory(first, last, value_type(first));
+    __destroy(first, last, value_type(first));
   }
 // 获取删除元素是否有必要调用析构函数
 template <class ForwardIterator, class T>
-  inline void __destory(ForwardIterator first, ForwardIterator last,
+  inline void __destroy(ForwardIterator first, ForwardIterator last,
                         T*)
   {
     typedef typename __type_traits<T>::has_trivial_destructor trivial_destructor;
-    __destory_aux(ForwardIterator first, ForwardIterator last, trivial_destructor());
+    __destroy_aux(ForwardIterator first, ForwardIterator last, trivial_destructor());
   }
 // 元素数值型别(value type)有 non-trivial destructor
 template <class ForwardIterator>
-    inline void __destory_aux(ForwardIterator first, ForwardIterator last,
+    inline void __destroy_aux(ForwardIterator first, ForwardIterator last,
                             __false_type)
     {
       for ( ; first < last; ++first) destroy(&*first);
     }
 // 元素数值型别(value type)有 trivial destructor
 template <class ForwardIterator>
-  inline void __destory_aux(ForwardIterator, ForwardIterator,
+  inline void __destroy_aux(ForwardIterator, ForwardIterator,
                           __true_type)
   { }
 
 // 析构2 对迭代器为 char* 和 wchar_t* 的特化版
 template <>
-  inline void destory(char*, char*)
+  inline void destroy(char*, char*)
   { }
 template <>
-  inline void destory(wchar_t*, wchar_t*)
+  inline void destroy(wchar_t*, wchar_t*)
   { }
 
 } // namespace tinystl
