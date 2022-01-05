@@ -23,7 +23,7 @@ namespace tinystl
 
 /**
  * uninitialized_copy(first, last, result)
- * 对 [first, last) 范围内产生 *result 的复制品
+ * 对 [first, last) 范围内产生复制品到 *result
  */
 // 萃取迭代器的 value type
 template <class InputIterator, class ForwardIterator>
