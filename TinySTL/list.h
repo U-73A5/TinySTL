@@ -26,12 +26,13 @@ template <class T, class Ref, class Ptr>
   {
     typedef __list_iterator<T, T&, T*>       iterator;
     typedef __list_iterator<T, Ref, Ptr>     self;
+    typedef __list_node<T>*                  link_type;
+    typedef size_t                           size_type;
+
     typedef bidirectional_iterator_tag       iterator_category;
     typedef T                                value_type;
     typedef Ptr                              pointer;
     typedef Ref                              reference;
-    typedef __list_node<T>*                  link_type;
-    typedef size_t                           size_type;
     typedef ptrdiff_t                        difference_type;
 
     // 指向 list 节点
